@@ -5,5 +5,4 @@
 
 > ### The Development Environnment and Pre-Production Environment repositories are as follows:
 > Web - https://github.com/aryanshdev/HACKATHON-FRONT-AND-NODE
-
 > ML Model - https://github.com/aryanshdev/HACKATHON-MODEL
