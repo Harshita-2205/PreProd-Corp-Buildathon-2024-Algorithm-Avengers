@@ -21,7 +21,8 @@
 
 ## User Task Page
 
-![User Task Page Screenshot](https://github.com/user-attachments/assets/9ee83c20-528b-4ac2-8f61-988170216194)
+![image](https://github.com/user-attachments/assets/d3771fa1-8e08-48b0-b074-d2da18a0c6a2)
+
 
 ## Development and Pre-Production Repositories
 
