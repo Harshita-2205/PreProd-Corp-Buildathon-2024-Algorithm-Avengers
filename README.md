@@ -6,7 +6,11 @@
 ![d4dbcfce-4101-442a-b124-80228e271ac2](https://github.com/user-attachments/assets/5179cb35-3dd8-48be-87dc-bbf99c7aad3c)
 
 > ### User Task Page
-![8187a22e-df4c-4300-a15c-37f37ff92016](https://github.com/user-attachments/assets/9ee83c20-528b-4ac2-8f61-988170216194)
+![8187a22e-df4c-4300-a15c-37f37ff92016](https://github.com/user-attachments/assets/9ee83c20-528b-4ac2-8f61-988170216194
+
+> ### Application Architecture
+<img width="1402" alt="image" src="https://github.com/user-attachments/assets/aa3c05cd-d889-4924-a488-744da5b5fe63">
+
 
 
 > ### The Development Environnment and Pre-Production Environment repositories are as follows:
