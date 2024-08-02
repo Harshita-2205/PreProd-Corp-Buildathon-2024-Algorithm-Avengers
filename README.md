@@ -46,3 +46,41 @@
 - Run the following command in the Models folder:
   ```bash
   pip install -r models/requirements.txt
+
+## User Operations
+
+### Upload Data
+- Upload Data (dataset file)
+
+### Data Transformation: Functions
+1. **Clean Columns**
+2. **Remove Duplicates**
+3. **Check Missing Values**
+4. **Handle Missing Non-Numeric Data**
+5. **Handle Missing Numeric Data**
+6. **Convert the Data to Numeric**
+7. **Normalize Date Column**
+8. **One-Hot Encoding (for specific columns)**
+9. **Get Column Data Types**
+10. **Drop Rows Without Target**
+
+*Generate and Display Outputs each time*
+
+### Model Training
+1. **SVM Model**
+   - Parameters: kernel, C, gamma
+
+2. **Random Forest**
+   - Parameters: n-estimators, max depth, minSampleSplit
+
+3. **XGBoost**
+   - Parameters: n-estimators, max depth, learning rate
+
+4. **Decision Tree**
+   - Parameters: max depth, minSampleSplit, kernel
+
+5. **Bagging**
+   - Parameters: n-estimators, Max sample, Max feature
+
+*Outputs:*
+- Accuracy (test and train)
