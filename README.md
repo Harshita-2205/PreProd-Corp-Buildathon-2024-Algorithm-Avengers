@@ -4,6 +4,13 @@
 
 ---
 
+### To check main contributions, refer the Development and Pre-Production Repositories
+
+- **Web**: [HACKATHON-FRONT-AND-NODE](https://github.com/aryanshdev/HACKATHON-FRONT-AND-NODE)
+- **ML Model**: [HACKATHON-MODEL](https://github.com/aryanshdev/HACKATHON-MODEL)
+
+---
+
 ## Table of Contents
 1. [Introduction and Overview](#introduction-and-overview)
 2. [Getting Started](#getting-started)
