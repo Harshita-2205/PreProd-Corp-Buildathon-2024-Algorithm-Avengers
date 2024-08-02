@@ -10,6 +10,7 @@
 3. [Development and Pre-Production Repositories](#development-and-pre-production-repositories)
 4. [Dependencies](#dependencies)
 5. [Installation](#installation)
+6. [User Interactions](#user-operations)
 
 ---
 
