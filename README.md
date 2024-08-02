@@ -4,10 +4,10 @@
 
 ---
 
-### To check main contributions, refer the Development and Pre-Production Repositories
-
-- **Web**: [HACKATHON-FRONT-AND-NODE](https://github.com/aryanshdev/HACKATHON-FRONT-AND-NODE)
-- **ML Model**: [HACKATHON-MODEL](https://github.com/aryanshdev/HACKATHON-MODEL)
+>#### To check main contributions, refer the Development and Pre-Production Repositories
+>
+> Web: [HACKATHON-FRONT-AND-NODE](https://github.com/aryanshdev/HACKATHON-FRONT-AND-NODE)
+> ML Model: [HACKATHON-MODEL](https://github.com/aryanshdev/HACKATHON-MODEL)
 
 ---
 
