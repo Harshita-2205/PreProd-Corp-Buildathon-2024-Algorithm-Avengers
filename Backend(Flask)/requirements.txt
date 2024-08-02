@@ -1,0 +1,5 @@
+flask
+csv
+Flask-Session
+pandas
+openpyxl

@@ -2,11 +2,12 @@ const express = require("express");
 const sql = require("sqlite3").verbose();
 const session = require("express-session");
 const passport = require("passport");
-const passsport = require("passport");
 const dotenv = require("dotenv");
+const uuid = require("uuid");
+
 dotenv.config();
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const FLASK_URL = "http://localhost:5000";
+const FLASK_URL = "http://127.0.0.1:5000";
 
 //Connect DB
 const userDB = new sql.Database("./userDB.db");
@@ -22,7 +23,13 @@ app.use(
   })
 );
 
-
+function ensureAuth(req,res,next) {
+  if(req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/");
+  }  
+}
 
 
 passport.use(
@@ -77,11 +84,32 @@ app.get(
     "/process-google",
     passport.authenticate("google", {
       failureRedirect: "/",
-      successRedirect: "http://localhost:5173/TrainModel",
+      successRedirect: "/genID",
       keepSessionInfo: true,
     })
   );
 
+app.get("/genID", (req, res) => {
+  const id = uuid.v4();
+  res.redirect(`http://localhost:5173/TrainModel/${id}`)
+})
+
 app.get("/trainModel", (req, res) => {
     res.send("LOGGED IN");
+});
+
+app.post("/uploadFile", (req, res) => {
+  fetch(`${FLASK_URL}/uploadFile`, {
+    method:'POST',
+    body: req.body,
+    type: 'formData',
+  }).then((response) => {
+    res.send(response.data);
+  });
+})
+
+
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
 });
