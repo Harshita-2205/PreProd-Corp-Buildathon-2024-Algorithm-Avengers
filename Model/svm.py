@@ -18,8 +18,8 @@ def load_data(file_name):
 def train_svm(train_data):
     try:
         # Split the data into features and target variable
-        X_train = train_data.drop(columns=['fetal_health'])  # Features
-        y_train = train_data['fetal_health']  # Target variable
+        X_train = train_data.drop(columns=['Skill Moves'])  # Features
+        y_train = train_data['Skill Moves']  # Target variable
 
         # Define parameters for the SVM
         kernel = 'rbf'
@@ -68,6 +68,8 @@ def evaluate_classifier(clf, kernel, C, gamma, X_train, y_train, y_train_pred, X
         model_filename = 'svm_model.pkl'
         joblib.dump(clf, model_filename)
         print(f"Trained model saved as {model_filename}")
+
+        return train_accuracy,test_accuracy
     except Exception as e:
         print("Error occurred while evaluating the SVM classifier: ", str(e))
 
@@ -94,6 +96,6 @@ if __name__ == "__main__":
     svm_clf, kernel, C, gamma, X_train, y_train, y_train_pred = train_svm(train_data)
 
     # Evaluate the SVM classifier
-    X_test = test_data.drop(columns=['fetal_health'])  # Features
-    y_test = test_data['fetal_health']  # Target variable
+    X_test = test_data.drop(columns=['Skill Moves'])  # Features
+    y_test = test_data['Skill Moves']  # Target variable
     evaluate_classifier(svm_clf, kernel, C, gamma, X_train, y_train, y_train_pred, X_test, y_test)

@@ -5,7 +5,6 @@ from sklearn.ensemble import BaggingClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import joblib
 
-
 warnings.filterwarnings('ignore')
 
 def load_data(file_name):
@@ -17,8 +16,8 @@ def load_data(file_name):
 
 def train_bagging_classifier(train_data):
     try:
-        X_train = train_data.drop(columns=['target'])  # Features
-        y_train = train_data['target']  # Target variable
+        X_train = train_data.drop(columns=['fetal_health'])  # Features
+        y_train = train_data['fetal_health']  # fetal_health variable
 
         # Define parameters for the Bagging Classifier
         criterion = 'gini'
@@ -29,7 +28,7 @@ def train_bagging_classifier(train_data):
         base_clf = DecisionTreeClassifier(criterion=criterion, max_depth=max_depth, random_state=42)
         
         # Initialize and train the Bagging classifier
-        bagging_clf = BaggingClassifier(base_estimator=base_clf, n_estimators=n_estimators, random_state=42)
+        bagging_clf = BaggingClassifier(estimator=base_clf, n_estimators=n_estimators, random_state=42)
         bagging_clf.fit(X_train, y_train)
 
         # Make predictions on the training data
@@ -38,7 +37,6 @@ def train_bagging_classifier(train_data):
         return bagging_clf, criterion, max_depth, n_estimators, X_train, y_train, y_train_pred
     except Exception as e:
         print("Error occurred while training the bagging classifier: ", str(e))
-
 
 def evaluate_classifier(clf, criterion, max_depth, n_estimators, X_train, y_train, y_train_pred, X_test, y_test):
     try:
@@ -70,26 +68,35 @@ def evaluate_classifier(clf, criterion, max_depth, n_estimators, X_train, y_trai
         model_filename = 'bagging_decision_tree_model.pkl'
         joblib.dump(clf, model_filename)
         print(f"Trained model saved as {model_filename}")
+
+        return train_accuracy,test_accuracy
+
     except Exception as e:
         print("Error occurred while evaluating the bagging classifier: ", str(e))
 
-
-
-
 if __name__ == "__main__":
+    # Define the paths to the training and testing files
+    X_train_file = 'X_train.csv'
+    X_test_file = 'X_test.csv'
 
-    train_file = 'X_train_Y_train.csv'
-    test_file = 'X_test_Y_test.csv'
+    Y_train_file = 'y_train.csv'
+    Y_test_file = 'y_test.csv'
     
     # Load data
-    train_data = load_data(train_file)
-    test_data = load_data(test_file)
+    X_train_data = load_data(X_train_file)
+    X_test_data = load_data(X_test_file)
+
+    y_train_data = load_data(Y_train_file)
+    y_test_data = load_data(Y_test_file)
     
+
+    train_data = pd.concat([X_train_data, y_train_data], axis=1)
+    test_data = pd.concat([X_test_data, y_test_data], axis=1)
+
     # Train the Bagging classifier
     clf, criterion, max_depth, n_estimators, X_train, y_train, y_train_pred = train_bagging_classifier(train_data)
     
     # Evaluate the Bagging classifier
-    X_test = test_data.drop(columns=['target'])  # Features
-    y_test = test_data['target']  # Target variable
+    X_test = test_data.drop(columns=['fetal_health'])  # Features
+    y_test = test_data['fetal_health']  # fetal_health variable
     evaluate_classifier(clf, criterion, max_depth, n_estimators, X_train, y_train, y_train_pred, X_test, y_test)
-
