@@ -2,8 +2,12 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
 ### Flask ###
-flask_session/
+flask_session/*
 uploads/*
+intermediate/*
+__pycache__/*
+cleanedCSV/*
+*.pyc
 
 ### Node ###
 # Logs
