@@ -1,15 +1,87 @@
 # PreProd-Corp-Buildathon-2024-Algorithm-Avengers
-#### This is the main Production Repository For Avenge-AI
 
-> ### Homepage and Login Page
-![b60c534e-e578-48e7-b4e6-9821650c9ad9](https://github.com/user-attachments/assets/25c6edfc-c8a7-40c4-aa3f-cdb6581d449f)
-![d4dbcfce-4101-442a-b124-80228e271ac2](https://github.com/user-attachments/assets/5179cb35-3dd8-48be-87dc-bbf99c7aad3c)
+### This is the main Production Repository for Avenge-AI
 
-> ### User Task Page
-![8187a22e-df4c-4300-a15c-37f37ff92016](https://github.com/user-attachments/assets/9ee83c20-528b-4ac2-8f61-988170216194)
+---
 
+## Table of Contents
+1. [Homepage and Login Page](#homepage-and-login-page)
+2. [User Task Page](#user-task-page)
+3. [Development and Pre-Production Repositories](#development-and-pre-production-repositories)
+4. [Dependencies](#dependencies)
+5. [Installation](#installation)
+6. [User Interactions](#user-operations)
 
-> ### The Development Environnment and Pre-Production Environment repositories are as follows:
-> Web - https://github.com/aryanshdev/HACKATHON-FRONT-AND-NODE
-> 
-> ML Model - https://github.com/aryanshdev/HACKATHON-MODEL
+---
+
+## Homepage and Login Page
+
+![Homepage Screenshot](https://github.com/user-attachments/assets/25c6edfc-c8a7-40c4-aa3f-cdb6581d449f)
+![Login Page Screenshot](https://github.com/user-attachments/assets/5179cb35-3dd8-48be-87dc-bbf99c7aad3c)
+
+## User Task Page
+
+![User Task Page Screenshot](https://github.com/user-attachments/assets/9ee83c20-528b-4ac2-8f61-988170216194)
+
+## Development and Pre-Production Repositories
+
+- **Web**: [HACKATHON-FRONT-AND-NODE](https://github.com/aryanshdev/HACKATHON-FRONT-AND-NODE)
+- **ML Model**: [HACKATHON-MODEL](https://github.com/aryanshdev/HACKATHON-MODEL)
+
+## Dependencies
+
+### Frontend Dependencies
+- Ensure you have Node.js installed.
+- Run the following command in the frontend folder:
+  ```bash
+  npm install
+
+### Backend Dependencies
+- Ensure you have Node.js installed.
+- Run the following command in the backend folder:
+  ```bash
+  npm install
+
+### ML Model Dependencies
+- Ensure you have Python installed.
+- Run the following command in the Models folder:
+  ```bash
+  pip install -r models/requirements.txt
+
+## User Operations
+
+### Upload Data
+- Upload Data (dataset file)
+
+### Data Transformation: Functions
+1. **Clean Columns**
+2. **Remove Duplicates**
+3. **Check Missing Values**
+4. **Handle Missing Non-Numeric Data**
+5. **Handle Missing Numeric Data**
+6. **Convert the Data to Numeric**
+7. **Normalize Date Column**
+8. **One-Hot Encoding (for specific columns)**
+9. **Get Column Data Types**
+10. **Drop Rows Without Target**
+
+*Generate and Display Outputs each time*
+
+### Model Training
+1. **SVM Model**
+   - Parameters: kernel, C, gamma
+
+2. **Random Forest**
+   - Parameters: n-estimators, max depth, minSampleSplit
+
+3. **XGBoost**
+   - Parameters: n-estimators, max depth, learning rate
+
+4. **Decision Tree**
+   - Parameters: max depth, minSampleSplit, kernel
+
+5. **Bagging**
+   - Parameters: n-estimators, Max sample, Max feature
+
+*Outputs:*
+- Accuracy (test and train)
