@@ -101,7 +101,7 @@ Download Page:
 
 
 ### Demo Video
-<iframe src="[Preview](https://drive.google.com/file/d/1YoDUebaA-2Xv7cgXL6u0CNcm8qmhkqt4/view?usp=drive_link)" width="640" height="480" allow="autoplay"></iframe>
+<iframe src="https://drive.google.com/file/d/1YoDUebaA-2Xv7cgXL6u0CNcm8qmhkqt4/preview" width="640" height="480" allow="autoplay"></iframe>
 
 
 ---
@@ -214,7 +214,7 @@ Download Page:
 - Frequently asked questions and answers.
 
 ### Support
-- Contact: [aryanshdev@gmial.com]
+- Contact: [aryanshdev@gmail.com]
 - Join the discussion: [link to forum or chat]
 
 ---
