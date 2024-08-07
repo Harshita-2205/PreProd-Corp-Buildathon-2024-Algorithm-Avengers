@@ -85,14 +85,18 @@ Avenge-AI is a cutting-edge platform designed to enable user to input a datasest
 ---
 
 ## User Task Page
-
+File Upload page:
 ![file_2024-08-06_18 47 58](https://github.com/user-attachments/assets/b7fd22c4-c00b-4b6c-a26d-8c10d8b69f8f)
+Data Transform:
 ![file_2024-08-06_18 57 08](https://github.com/user-attachments/assets/6e9bd696-9797-4cdd-8cdf-4cb6f95946fe)
+Training:
 ![file_2024-08-06_18 58 45](https://github.com/user-attachments/assets/27f61760-9513-4898-b2c0-57d20c8ff606)
+Models:
 ![file_2024-08-06_19 05 21](https://github.com/user-attachments/assets/08e967a5-8f7e-44e1-9483-d739ca23af08)
 ![file_2024-08-06_19 05 21](https://github.com/user-attachments/assets/6b5c7568-8c57-4f8d-8d7e-90773f006567)
 ![file_2024-08-06_19 05 36](https://github.com/user-attachments/assets/652a4f5e-b633-41f0-9dfb-b65192fccee1)
 ![file_2024-08-06_19 05 46](https://github.com/user-attachments/assets/dfcfad3a-0739-4faa-be2c-07912535452f)
+Download Page:
 ![file_2024-08-06_19 10 48](https://github.com/user-attachments/assets/bfaf4fb8-e18a-4133-b20f-2ceafa1a9316)
 
 
