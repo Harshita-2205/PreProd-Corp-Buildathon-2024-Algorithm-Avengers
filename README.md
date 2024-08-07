@@ -209,7 +209,8 @@ Download Page:
 ## Maintenance and Support
 
 ### Known Issues
-- File saving issue.
+- File saving issue. (Fixed)
+- Normalisation graph display.
 
 ### FAQ
 - Frequently asked questions and answers.
