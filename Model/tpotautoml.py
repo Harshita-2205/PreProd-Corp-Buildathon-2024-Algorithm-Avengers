@@ -1,92 +1,74 @@
-import numpy as np
 import pandas as pd
 from tpot import TPOTClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from scipy import stats
+import numpy as np
+import scipy.stats as stats
 import seaborn as sns
 import matplotlib.pyplot as plt
-import json
 
-# Function to perform a statistical Z-test for proportions
-def statistical_test(y_test, y_pred):
-    # Performing a Z-test for proportions
-    n = len(y_test)
-    p0 = 0.5
-    phat = accuracy_score(y_test, y_pred)
-    z = (phat - p0) / ((p0 * (1 - p0) / n) ** 0.5)
-    p_value = stats.norm.cdf(z)
-    return z, p_value
-
-# Function to plot and save the distribution of accuracy scores
-def plot_accuracy_distribution(y_pred):
-    plt.figure(figsize=(10, 6))
-    sns.histplot(y_pred, kde=True)
-    plt.title('Distribution of Predicted Values')
-    plt.xlabel('Predicted Value')
-    plt.ylabel('Frequency')
-    plt.savefig('accuracy_distribution.png')
-
-# Function to run TPOT and return the results in JSON format
-def run_tpot(path, target_column):
-    df = pd.read_csv(path)
+def tpot_automl(file_path, output_pipeline_filename):
+    # Load the dataset
+    data = pd.read_csv(file_path)
     
-    if target_column not in df.columns:
-        data = df.to_json(orient='records')
-        message = f"Target column '{target_column}' not found in DataFrame."
-        status = "err"
-        result = {
-            'data': data,
-            'message': message,
-            'status': status
-        }
-        return result
-    
-    # Separate features and target
-    X = df.drop(columns=[target_column])
-    y = df[target_column]
+    # Assume the target column is named 'fetal_health' (change it if necessary)
+    target = 'fetal_health'
+    X = data.drop(target, axis=1)
+    y = data[target]
 
-    # Split data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # Split the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.75, test_size=0.25, random_state=42)
 
-    # Run TPOT
-    tpot = TPOTClassifier(verbosity=2, generations=5, population_size=20, random_state=42)
+    # Initialize the TPOT classifier with 5 generations and a population size of 50
+    tpot = TPOTClassifier(generations=5, population_size=50, verbosity=2, random_state=42)
+
+    # Fit the TPOT classifier on the training data
     tpot.fit(X_train, y_train)
 
-    # Evaluate the model
+    # Evaluate the classifier on the testing data
     y_pred = tpot.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
-    
-    # Perform the statistical test
-    z_value, p_value = statistical_test(y_test, y_pred)
+    print(f'Accuracy: {accuracy}')
 
-    # Export the pipeline as code
-    tpot.export('tpot_pipeline.py')
+    # Export the best pipeline
+    tpot.export(output_pipeline_filename)
 
-    # Plot the distribution of accuracy scores
-    plot_accuracy_distribution(y_pred)
-    
-    data = {
-        'best_pipeline': 'tpot_pipeline.py',
-        'accuracy': accuracy,
-        'z_value': z_value,
-        'p_value': p_value
-    }
-    
-    message = "TPOT analysis completed successfully."
-    status = "succ"
-    
-    result = {
-        'data': data,
-        'message': message,
-        'status': status
-    }
-    
-    return result
+    # Extract the accuracy scores from TPOT's generations
+    accuracy_scores = [t['internal_cv_score'] for t in tpot.evaluated_individuals_.values()]
+
+    # Convert to numpy array and calculate z-score
+    accuracy_scores = np.array(accuracy_scores)
+    z_scores = stats.zscore(accuracy_scores)
+    z_score = (accuracy - np.mean(accuracy_scores)) / np.std(accuracy_scores)
+    area_to_left = stats.norm.cdf(z_score)
+    p_value = (1 - area_to_left) * 2
+    alpha = 0.05
+    null_hypothesis_true = p_value > alpha
+
+    print(f'Z-score for accuracy: {z_score}')
+    print(f'P-value for accuracy: {p_value}')
+    print(f'Null hypothesis is true: {null_hypothesis_true}')
+
+    # Plot the distribution
+    sns.histplot(accuracy_scores, kde=True, stat="density", bins=10, color="skyblue", label="Accuracy")
+    x = np.linspace(min(accuracy_scores), max(accuracy_scores), 100)
+    plt.plot(x, stats.norm.pdf(x, np.mean(accuracy_scores), np.std(accuracy_scores)), label="Normal Distribution")
+
+    # Highlight the area to the left of the Z-score
+    z_value_data_point = np.mean(accuracy_scores) + z_score * np.std(accuracy_scores)
+    plt.fill_between(x, 0, stats.norm.pdf(x, np.mean(accuracy_scores), np.std(accuracy_scores)), where=(x <= z_value_data_point), color='gray', alpha=0.5)
+
+    # Adding labels and legend
+    plt.axvline(z_value_data_point, color='red', linestyle='--', label=f'Z-score {z_score}')
+    plt.title('Accuracy Distribution with Normal Curve')
+    plt.xlabel('Accuracy Values')
+    plt.ylabel('Density')
+    plt.legend()
+
+    # Showing the plot
+    plt.show()
 
 # Example usage:
-path = 'file_path.csv'
-target_column = 'target_column_name'
-result = run_tpot(path, target_column)
-print(json.dumps(result, indent=4))
-    
+file_path = 'fetal_health.csv'
+output_pipeline_filename = 'desired_pipeline_filename.py'
+tpot_automl(file_path, output_pipeline_filename)
