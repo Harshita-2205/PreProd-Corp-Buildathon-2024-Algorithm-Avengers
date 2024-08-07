@@ -3,41 +3,38 @@ const sql = require("sqlite3").verbose();
 const session = require("express-session");
 const passport = require("passport");
 const dotenv = require("dotenv");
-const uuid = require("uuid");
+const bodyParser = require("body-parser");
+const appRouter = require("./routes/app");
 
 dotenv.config();
+
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FLASK_URL = "http://127.0.0.1:5000";
 
-//Connect DB
-const userDB = new sql.Database("./userDB.db");
+const userDB = new sql.Database("userDB.db")
+userDB.run(
+  "CREATE TABLE IF NOT EXISTS users (ssid TEXT, uuid TEXT, date DATE, currentStep TEXT)"
+);
+userDB.close();
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: "your-secret-key",
+    secret: "AVENGE-AI",
     resave: false,
     saveUninitialized: true,
   })
 );
-
-function ensureAuth(req,res,next) {
-  if(req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect("/");
-  }  
-}
-
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.OAUTH_CLIENT,
       clientSecret: process.env.OAUTH_SECRET,
-      callbackURL: "http://localhost:10000/process-google",
+      callbackURL: "http://localhost:10000/app/process-google",
       scope: ["https://www.googleapis.com/auth/plus.login"],
     },
     (accessToken, refreshToken, profile, done) => {
@@ -58,6 +55,7 @@ passport.deserializeUser(function (obj, done) {
 });
 
 
+app.use("/app", appRouter);
 
 app.listen(10000, () => {
   console.log("SERVER LISTENING AT PORT 10,000");
@@ -98,18 +96,15 @@ app.get("/trainModel", (req, res) => {
     res.send("LOGGED IN");
 });
 
-app.post("/uploadFile", (req, res) => {
-  fetch(`${FLASK_URL}/uploadFile`, {
-    method:'POST',
-    body: req.body,
-    type: 'formData',
-  }).then((response) => {
-    res.send(response.data);
-  });
-})
 
 
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
+// app.delete("/deleteFile", (req, res) => {
+//   fetch(`${FLASK_URL}/deleteFile`, {
+//     method: 'DELETE',
+//     body: req.body,
+//     type: 'formData',
+//   }).then((response) => {
+//     res.send(response.data);
+//   });
+// });
+

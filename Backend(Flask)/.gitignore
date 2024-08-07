@@ -1,0 +1,9 @@
+flask_session/*
+uploads/*
+intermediate/*
+__pycache__/*
+cleanedCSV/*
+*.pyc
+
+/venv/
+/.venv

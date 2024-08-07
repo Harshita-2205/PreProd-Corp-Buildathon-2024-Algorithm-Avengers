@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import '../src/index.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
-import { TrainModel } from './components/useComp/TrainModel';
+import { UploadData } from './components/useComp/UploadData';
 import RealMain from './components/useComp/RealMain';
-import DataTransfer from './components/useComp/dataTransfer';
+import DataTransform from './components/useComp/DataTransform';
 import RunModels from './components/useComp/RunModels';
 import { v4 as uuidv4 } from 'uuid';
+import Downloads from './components/useComp/DownloadModels';
 
 function App() {
-  const [roomId, setRoomId] = useState('');
-
-  useEffect(() => {
-    const id = uuidv4();
-    setRoomId(id);
-    
-  }, []);
 
   return (
     <>
-      <Toaster
+    <Toaster
         position="top-right"
+        duration={5000}
         toastOptions={{
           style: {
-            borderRadius: '20px',
-            background: '#333',
+            fontSize: '1.1rem',
+            background: '#222',
             color: '#fff',
           },
           success: {
@@ -38,10 +33,11 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<RealMain />} />
-          <Route path="/trainmodel/:id" element={<TrainModel />} />
-          <Route path="/transformData/:id" element={<DataTransfer />} />
-          <Route path="/runmodels/:id" element={<RunModels />} />
+          <Route path="/" element={<RealMain />}  />
+          <Route path="/UploadData/:id" element={<UploadData />} />
+          <Route path="/TransformData/:id" element={<DataTransform />} />
+          <Route path="/RunModels/:id" element={<RunModels />} />
+          <Route path="/DownloadModels/:id" element={<Downloads />} />
         </Routes>
       </BrowserRouter>
     </>
