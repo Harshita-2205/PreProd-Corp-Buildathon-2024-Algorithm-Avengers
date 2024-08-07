@@ -101,7 +101,8 @@ Download Page:
 
 
 ### Demo Video
-<iframe src="https://drive.google.com/file/d/1YoDUebaA-2Xv7cgXL6u0CNcm8qmhkqt4/preview" width="640" height="480" allow="autoplay"></iframe>
+
+[![Watch the video](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/maxresdefault.jpg)](https://drive.google.com/file/d/1YoDUebaA-2Xv7cgXL6u0CNcm8qmhkqt4/view?usp=drive_link)
 
 
 ---
