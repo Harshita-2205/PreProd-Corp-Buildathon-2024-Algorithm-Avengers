@@ -100,6 +100,9 @@ Download Page:
 ![file_2024-08-06_19 10 48](https://github.com/user-attachments/assets/bfaf4fb8-e18a-4133-b20f-2ceafa1a9316)
 
 
+### Demo Video
+<iframe src="[Preview](https://drive.google.com/file/d/1YoDUebaA-2Xv7cgXL6u0CNcm8qmhkqt4/view?usp=drive_link)" width="640" height="480" allow="autoplay"></iframe>
+
 
 ---
 
